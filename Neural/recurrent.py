@@ -19,7 +19,7 @@ path = "US_cities.txt"
 if not os.path.isfile(path)
 	context = ssl._create_unverified_context()
 	#get data set
-	moves.urllib.request.urlretrieve("https://raw.githubuser.com/tflearn/tflearn.github.io/master/resource/us_cities", path, context = context)
+	moves.urllib.request.urlretrieve("https://raw.githubusercontent.com/tflearn/tflearn.github.io/master/resource/us_cities", path, context = context)
 
 # city name max length
 maxlen =20
