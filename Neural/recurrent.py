@@ -3,23 +3,23 @@
 #regression problem using classification
 
 #LSTM("long sort term memoty ") NN to generate city names
-from __future inport absolute import , divison , print fucntion
+from __future__ import absolute_import ,division ,print_function
 
 import os 
 from six import moves #url like module , pull data from url
 
 import ssl
 import tflearn
-from tflearn.data_utils import 
+from tflearn.data_utils import *
 
 #Step 1 - Retrieve the data 
 
-path = "US_cities.txt"
+path = "US_Cities.txt"
 
-if not os.path.isfile(path)
+if not os.path.isfile(path):
 	context = ssl._create_unverified_context()
 	#get data set
-	moves.urllib.request.urlretrieve("https://raw.githubusercontent.com/tflearn/tflearn.github.io/master/resource/us_cities", path, context = context)
+	moves.urllib.request.urlretrieve("https://raw.githubusercontent.com/tflearn/tflearn.github.io/master/resource/US_Cities", path, context = context)
 
 # city name max length
 maxlen =20
@@ -39,6 +39,8 @@ g = tflean.dropout(g, 0.5)
 g = tflearn.fully_connected(g, len(char_idx, activation = 'softmax')) #last layer
 #softmax = logistic regression
 
+g = tflearn.regression(g, optimizer = 'adam', loss ='categorical_crossentropy',
+	learning_rate = 0.001)
 #generate cities
 
 m = tflearn.SequenceGenerator(g, dictionary = char_idx,
